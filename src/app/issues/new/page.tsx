@@ -10,13 +10,18 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import "easymde/dist/easymde.min.css";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
 import { formSchema } from "./form-config";
 
 export default function NewIssuePage() {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -25,9 +30,10 @@ export default function NewIssuePage() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    await axios.post("/api/issues", values);
+    router.push("/issues");
+  };
 
   return (
     <section>
@@ -66,7 +72,7 @@ export default function NewIssuePage() {
                       Description<span className="text-red-500">*</span>
                     </FormLabel>
                     <FormControl>
-                      <Textarea className="resize-none" {...field} />
+                      <SimpleMDE {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
