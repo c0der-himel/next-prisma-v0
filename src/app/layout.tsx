@@ -28,7 +28,7 @@ export default function RootLayout({
         )}
       >
         <Header />
-        <main>{children}</main>
+        <main className="text-slate-700">{children}</main>
         <Footer />
       </body>
     </html>

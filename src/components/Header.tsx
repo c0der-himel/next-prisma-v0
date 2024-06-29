@@ -1,5 +1,6 @@
 "use client";
 
+import classNames from "classnames";
 import { Bug, CircleUser, Menu, Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -30,18 +31,18 @@ export const Header = () => {
           href="#"
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
-          <Bug className="h-6 w-6" />
+          <Bug className="h-6 w-6 text-slate-700" />
           <span className="sr-only">Issue Tracker</span>
         </Link>
         {links.map((link, index) => (
           <Link
             key={index}
             href={link.href}
-            className={`transition-colors hover:text-foreground ${
-              pathname === link.href
-                ? "text-foreground"
-                : "text-muted-foreground"
-            }`}
+            className={classNames({
+              "font-bold text-slate-700": pathname === link.href,
+              "text-muted-foreground": pathname !== link.href,
+              "transition-colors hover:text-slate-700": true,
+            })}
           >
             {link.label}
           </Link>
@@ -60,18 +61,18 @@ export const Header = () => {
               href="#"
               className="flex items-center gap-2 text-lg font-semibold"
             >
-              <Bug className="h-6 w-6" />
+              <Bug className="h-6 w-6 text-slate-700" />
               <span className="sr-only">Issue Tracker</span>
             </Link>
             {links.map((link, index) => (
               <SheetClose asChild key={index}>
                 <Link
                   href={link.href}
-                  className={`transition-colors hover:text-foreground ${
-                    pathname === link.href
-                      ? "text-foreground"
-                      : "text-muted-foreground"
-                  }`}
+                  className={classNames({
+                    "font-bold text-slate-700": pathname === link.href,
+                    "text-muted-foreground": pathname !== link?.href,
+                    "transition-colors hover:text-slate-700": true,
+                  })}
                 >
                   {link.label}
                 </Link>

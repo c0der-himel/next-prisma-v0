@@ -9,7 +9,7 @@ export const Footer = () => {
           href="/"
           className="flex title-font font-medium items-center md:justify-start justify-center text-slate-900"
         >
-          <Bug className="h-6 w-6" />
+          <Bug className="h-6 w-6 text-slate-700" />
           <span className="sr-only">Issue Tracker</span>
         </Link>
         <p className="text-sm text-slate-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-slate-200 sm:py-2 sm:mt-0 mt-4">
