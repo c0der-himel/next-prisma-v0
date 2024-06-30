@@ -1,5 +1,6 @@
 "use client";
 
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -13,7 +14,9 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
+import { AlertCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
@@ -21,6 +24,7 @@ import { formSchema } from "./form-config";
 
 export default function NewIssuePage() {
   const router = useRouter();
+  const [error, setError] = useState<string>("");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -31,8 +35,12 @@ export default function NewIssuePage() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    await axios.post("/api/issues", values);
-    router.push("/issues");
+    try {
+      await axios.post("/api/issues", values);
+      router.push("/issues");
+    } catch (error) {
+      setError("An unexpected error is occurred");
+    }
   };
 
   return (
@@ -44,6 +52,17 @@ export default function NewIssuePage() {
           </h1>
         </div>
       </div>
+      {error ? (
+        <div className="mb-5 max-w-xl px-8">
+          <Alert variant="destructive">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        </div>
+      ) : (
+        ""
+      )}
       <div className="px-8">
         <div className="max-w-xl">
           <Form {...form}>
