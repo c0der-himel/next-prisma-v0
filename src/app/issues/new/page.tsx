@@ -20,21 +20,21 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
-import { formSchema } from "./form-config";
+import { createIssueSchema } from "./form-config";
 
 export default function NewIssuePage() {
   const router = useRouter();
   const [error, setError] = useState<string>("");
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof createIssueSchema>>({
+    resolver: zodResolver(createIssueSchema),
     defaultValues: {
       title: "",
       description: "",
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof createIssueSchema>) => {
     try {
       await axios.post("/api/issues", values);
       router.push("/issues");
