@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import classNames from "classnames";
-import { Bug, CircleUser, Menu, Search } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Button } from "./ui/button";
+import classNames from 'classnames';
+import { Bug, CircleUser, Menu, Search } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Button } from './ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,16 +12,16 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { Input } from "./ui/input";
-import { Sheet, SheetClose, SheetContent, SheetTrigger } from "./ui/sheet";
+} from './ui/dropdown-menu';
+import { Input } from './ui/input';
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from './ui/sheet';
 
 export const Header = () => {
   const pathname = usePathname();
 
   const links = [
-    { label: "Dashboard", href: "/" },
-    { label: "Issues", href: "/issues" },
+    { label: 'Dashboard', href: '/' },
+    { label: 'Issues', href: '/issues' },
   ];
 
   return (
@@ -39,9 +39,9 @@ export const Header = () => {
             key={index}
             href={link.href}
             className={classNames({
-              "font-bold text-slate-700": pathname === link.href,
-              "text-muted-foreground": pathname !== link.href,
-              "transition-colors hover:text-slate-700": true,
+              'font-bold text-slate-700': pathname === link.href,
+              'text-muted-foreground': pathname !== link.href,
+              'transition-colors hover:text-slate-700': true,
             })}
           >
             {link.label}
@@ -50,7 +50,11 @@ export const Header = () => {
       </nav>
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="shrink-0 md:hidden">
+          <Button
+            variant="outline"
+            size="icon"
+            className="shrink-0 md:hidden"
+          >
             <Menu className="h-5 w-5" />
             <span className="sr-only">Toggle navigation menu</span>
           </Button>
@@ -65,13 +69,16 @@ export const Header = () => {
               <span className="sr-only">Issue Tracker</span>
             </Link>
             {links.map((link, index) => (
-              <SheetClose asChild key={index}>
+              <SheetClose
+                asChild
+                key={index}
+              >
                 <Link
                   href={link.href}
                   className={classNames({
-                    "font-bold text-slate-700": pathname === link.href,
-                    "text-muted-foreground": pathname !== link?.href,
-                    "transition-colors hover:text-slate-700": true,
+                    'font-bold text-slate-700': pathname === link.href,
+                    'text-muted-foreground': pathname !== link?.href,
+                    'transition-colors hover:text-slate-700': true,
                   })}
                 >
                   {link.label}
@@ -94,7 +101,11 @@ export const Header = () => {
         </form>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="secondary" size="icon" className="rounded-full">
+            <Button
+              variant="secondary"
+              size="icon"
+              className="rounded-full"
+            >
               <CircleUser className="h-5 w-5" />
               <span className="sr-only">Toggle user menu</span>
             </Button>

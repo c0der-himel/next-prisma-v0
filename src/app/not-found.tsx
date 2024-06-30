@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 export default function NotFound() {
   return (
@@ -19,7 +19,10 @@ export default function NotFound() {
             >
               Go back home
             </Link>
-            <Link href="/" className="text-sm font-semibold text-slate-700">
+            <Link
+              href="/"
+              className="text-sm font-semibold text-slate-700"
+            >
               Contact support <span aria-hidden="true">&rarr;</span>
             </Link>
           </div>
