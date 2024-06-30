@@ -1,6 +1,6 @@
-import { createIssueSchema } from '@/features/issues/form-config';
-import { NextRequest, NextResponse } from 'next/server';
-import prisma from '../../../../prisma/client';
+import prisma from "@/db/db";
+import { createIssueSchema } from "@/features/issues/form-config";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();

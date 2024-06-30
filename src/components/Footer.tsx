@@ -1,5 +1,5 @@
-import { Bug } from 'lucide-react';
-import Link from 'next/link';
+import { Bug } from "lucide-react";
+import Link from "next/link";
 
 export const Footer = () => {
   return (

@@ -7,7 +7,7 @@
   "printWidth": 80,
   "semi": true,
   "singleAttributePerLine": true,
-  "singleQuote": true,
+  "singleQuote": false,
   "trailingComma": "all",
   "bracketSameLine": false,
   "proseWrap": "preserve"

@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import classNames from 'classnames';
-import { Bug, CircleUser, Menu, Search } from 'lucide-react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Button } from './ui/button';
+import classNames from "classnames";
+import { Bug, CircleUser, Menu, Search } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Button } from "./ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,16 +12,16 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from './ui/dropdown-menu';
-import { Input } from './ui/input';
-import { Sheet, SheetClose, SheetContent, SheetTrigger } from './ui/sheet';
+} from "./ui/dropdown-menu";
+import { Input } from "./ui/input";
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "./ui/sheet";
 
 export const Header = () => {
   const pathname = usePathname();
 
   const links = [
-    { label: 'Dashboard', href: '/' },
-    { label: 'Issues', href: '/issues' },
+    { label: "Dashboard", href: "/" },
+    { label: "Issues", href: "/issues" },
   ];
 
   return (
@@ -39,9 +39,9 @@ export const Header = () => {
             key={index}
             href={link.href}
             className={classNames({
-              'font-bold text-slate-700': pathname === link.href,
-              'text-muted-foreground': pathname !== link.href,
-              'transition-colors hover:text-slate-700': true,
+              "font-bold text-slate-700": pathname === link.href,
+              "text-muted-foreground": pathname !== link.href,
+              "transition-colors hover:text-slate-700": true,
             })}
           >
             {link.label}
@@ -76,9 +76,9 @@ export const Header = () => {
                 <Link
                   href={link.href}
                   className={classNames({
-                    'font-bold text-slate-700': pathname === link.href,
-                    'text-muted-foreground': pathname !== link?.href,
-                    'transition-colors hover:text-slate-700': true,
+                    "font-bold text-slate-700": pathname === link.href,
+                    "text-muted-foreground": pathname !== link?.href,
+                    "transition-colors hover:text-slate-700": true,
                   })}
                 >
                   {link.label}

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -9,42 +9,41 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { createIssueSchema } from '@/features/issues/form-config';
-import { zodResolver } from '@hookform/resolvers/zod';
-import axios from 'axios';
-import 'easymde/dist/easymde.min.css';
-import { AlertCircle, Loader2 } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import SimpleMDE from 'react-simplemde-editor';
-import { toast } from 'sonner';
-import { z } from 'zod';
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { createIssueSchema } from "@/features/issues/form-config";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { AlertCircle, Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 
 export default function NewIssuePage() {
   const router = useRouter();
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof createIssueSchema>>({
     resolver: zodResolver(createIssueSchema),
     defaultValues: {
-      title: '',
-      description: '',
+      title: "",
+      description: "",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof createIssueSchema>) => {
     try {
       setIsSubmitting(true);
-      await axios.post('/api/issues', values);
-      toast.success('New Issue Created Successfully');
-      router.push('/issues');
+      await axios.post("/api/issues", values);
+      toast.success("New Issue Created Successfully");
+      router.push("/issues");
     } catch (error) {
       setIsSubmitting(false);
-      setError('An unexpected error is occurred');
+      setError("An unexpected error is occurred");
     }
   };
 
@@ -66,7 +65,7 @@ export default function NewIssuePage() {
           </Alert>
         </div>
       ) : (
-        ''
+        ""
       )}
       <div className="px-8">
         <div className="max-w-xl">
@@ -99,7 +98,10 @@ export default function NewIssuePage() {
                       Description<span className="text-red-500">*</span>
                     </FormLabel>
                     <FormControl>
-                      <SimpleMDE {...field} />
+                      <Textarea
+                        {...field}
+                        className="resize-none"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
